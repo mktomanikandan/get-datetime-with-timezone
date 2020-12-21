@@ -1,0 +1,13 @@
+timezone.admin_timezone_config:
+  route_name: timezone.admin_timezone_config
+  title: 'TimeZone config Settings'
+  parent: system.admin_config
+  description: 'Configure TimeZone.'
+  weight: -10
+
+timezone.timezoneconfigs:
+  title: 'Timezone Settings'
+  route_name: timezone.timezoneconfigs
+  description: 'TimeZone general settings'
+  parent: timezone.admin_timezone_config
+  weight: 0

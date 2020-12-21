@@ -1,0 +1,18 @@
+# TimeZone Admin Configuration Form
+timezone.admin_timezone_config:
+  path: '/admin/config/timezone_settings'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'TimeZone Config Settings'
+  requirements:
+    _permission: 'administer site configuration'
+
+timezone.timezoneconfigs:
+  path: '/admin/config/timezone_settings/timezone_configs'
+  defaults:
+    _form: '\Drupal\timezone\Form\TimeZoneForm'
+    _title: 'TimeZone Admin Config Form'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE
