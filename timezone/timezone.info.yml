@@ -5,6 +5,8 @@ package: 'custom'
 core: 8.x
 core_version_requirement: ^8 || ^9
 
+configure: timezone.timezoneconfigs
+
 # Information added by Drupal.org packaging script on 2020-10-13
 version: '8.x-1.0'
 datestamp: 1602577471
