@@ -6,6 +6,8 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Cache\CacheTagsInvalidator;
+
 
 /**
  * An TimeZone Config Form.
@@ -20,11 +22,27 @@ class TimeZoneForm extends ConfigFormBase {
   protected $configFactory;
 
   /**
+   * Drupal\Core\Cache\CacheTagsInvalidator definition.
+   *
+   * @var Drupal\Core\Cache\CacheTagsInvalidator
+   */
+  protected $cacheTags;
+
+  /**
+   * Constructs a new DeltaCacheService object.
+   */
+  public function __construct(ConfigFactoryInterface $configFactory, CacheTagsInvalidator $cacheTags) {
+    $this->configFactory = $config_factory;
+    $this->cacheTags = $cacheTags;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('config.factory')
+      $container->get('config.factory'),
+      $container->get('cache_tags.invalidator')
     );
   }
 
@@ -96,5 +114,6 @@ class TimeZoneForm extends ConfigFormBase {
       ->set('city', $form_state->getValue('city'))
       ->set('timezone', $form_state->getValue('timezone'))
       ->save();
+    $this->cacheTags->invalidateTags(array("block_view:timezone_block"));
    }
 }

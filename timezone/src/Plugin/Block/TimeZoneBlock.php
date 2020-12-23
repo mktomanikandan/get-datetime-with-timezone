@@ -84,9 +84,6 @@ class TimeZoneBlock extends BlockBase implements BlockPluginInterface, Container
         return [
           '#type' => 'markup',
           '#markup' => render($dateTime),
-          '#cache' => [
-            'max-age' => 0,
-          ],
         ];
       }
       else {
